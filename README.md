@@ -20,8 +20,6 @@ com.algaworks.algafood.api
 com.algaworks.algafood.domain  
 com.algaworks.algafood.infrastructure  
 
----  
-
 ### ✅ Vantagens
 - Simples de desenvolver e implantar  
 - Baixo custo inicial  
@@ -70,8 +68,6 @@ pedido/
 pagamento/  
 cliente/  
 
----
-
 ### ✅ **Vantagens**
 - Simplicidade do monólito com melhor organização  
 - Facilidade para evoluir para microsserviços  
@@ -99,7 +95,6 @@ core/
 adapters/  
 ├── inbound/ (controllers)  
 └── outbound/ (repositories, APIs)  
-
 
 ### ✅ Vantagens
 - Domínio puro e independente de frameworks  
@@ -162,8 +157,6 @@ Os serviços se comunicam via **REST API** ou **mensageria** (RabbitMQ, Kafka).
 pedido-service/  
 pagamento-service/  
 notificacao-service/  
-
----
 
 ### ✅ Vantagens
 - Escalabilidade e deploy independentes  
