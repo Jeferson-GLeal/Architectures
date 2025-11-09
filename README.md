@@ -229,5 +229,45 @@ Cada função é chamada via **API Gateway** e executa uma tarefa isolada.
 | **SOA** | Distribuída | 🔸 Média | 🟠 Alta | Integrações corporativas |
 | **Microsserviços** | Distribuída | 🔸 Muito Alta | 🔴 Alta | Sistemas escaláveis |
 | **Event-Driven** | Distribuída | 🔸 Muito Alta | 🔴 Alta | Sistemas reativos/distribuídos |
-| **Serverless** | Nuvem | 🔸 Alta | 🟡 Média | Automaçã
+| **Serverless** | Nuvem | 🔸 Alta | 🟡 Média | Automação e APIs simples |
 
+---
+
+## 💬 **Conclusão**
+
+> A **arquitetura de software** define a base estrutural de um sistema.  
+> Não existe uma arquitetura “melhor”, e sim **a mais adequada** para o contexto do projeto.  
+> Projetos pequenos funcionam bem com **arquiteturas em camadas**,  
+> enquanto sistemas corporativos e SaaS modernos tendem a adotar **Clean Architecture**, **Hexagonal** ou **Microsserviços**.
+
+---
+
+⭐ *“A boa arquitetura não é a mais complexa, mas a que torna o sistema fácil de evoluir.”*
+
+
+## 🗺️ Evolução das Arquiteturas de Software
+
+```mermaid```
+flowchart LR
+    A[🏗️ Arquitetura Monolítica] --> B[🧱 Arquitetura em Camadas]
+    B --> C[🧩 Arquitetura Modular]
+    C --> D[🔷 Arquitetura Hexagonal]
+    D --> E[🧼 Clean Architecture]
+    E --> F[☁️ Microsserviços]
+    F --> G[🔄 Event-Driven Architecture]
+    G --> H[🪶 Serverless]
+
+    A:::basic
+    B:::basic
+    C:::intermediate
+    D:::advanced
+    E:::advanced
+    F:::modern
+    G:::modern
+    H:::cloud
+
+    classDef basic fill:#e2e8f0,stroke:#64748b,stroke-width:1px,color:#1e293b;
+    classDef intermediate fill:#fde68a,stroke:#f59e0b,stroke-width:1px,color:#78350f;
+    classDef advanced fill:#bbf7d0,stroke:#16a34a,stroke-width:1px,color:#064e3b;
+    classDef modern fill:#93c5fd,stroke:#2563eb,stroke-width:1px,color:#1e3a8a;
+    classDef cloud fill:#c7d2fe,stroke:#4f46e5,stroke-width:1px,color:#312e81;
