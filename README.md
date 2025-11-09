@@ -57,105 +57,7 @@ Divide o sistema em **camadas horizontais**, onde cada uma possui uma responsabi
 
 ---
 
-## ☁️ 3. Arquitetura de Microsserviços (Microservices Architecture)
-
-### 💡 Descrição
-A aplicação é dividida em **vários serviços pequenos e independentes**, cada um com uma responsabilidade específica e banco de dados próprio.  
-Os serviços se comunicam via **REST API** ou **mensageria** (RabbitMQ, Kafka).
-
-### ⚙️ Exemplo
-
-pedido-service/  
-pagamento-service/  
-notificacao-service/  
-
----
-
-### ✅ Vantagens
-- Escalabilidade e deploy independentes  
-- Alta resiliência  
-- Ideal para equipes e domínios separados  
-
-### ⚠️ Desvantagens
-- Complexidade de comunicação e infraestrutura  
-- Necessidade de observabilidade (logs, tracing, monitoramento)
-
----
-
-## 🔄 4. Arquitetura Orientada a Eventos (Event-Driven Architecture)
-
-### 💡 Descrição
-Os serviços não se comunicam diretamente, mas sim **por meio de eventos assíncronos**.  
-Quando algo acontece em um serviço, ele **publica um evento**, e outros serviços **reagem** a ele.
-
-### ⚙️ Exemplo
-- `PedidoService` publica “PagamentoConfirmado”  
-- `EntregaService` consome o evento e processa a entrega  
-
-### ✅ Vantagens
-- Desacoplamento total entre os serviços  
-- Alta performance e escalabilidade  
-- Comunicação assíncrona  
-
-### ⚠️ Desvantagens
-- Fluxo difícil de rastrear  
-- Complexidade de monitoramento  
-
----
-
-## 🧠 5. Arquitetura Hexagonal (Ports and Adapters)
-
-### 💡 Descrição
-Proposta por **Alistair Cockburn**, essa arquitetura separa o **núcleo da aplicação (regras de negócio)** da **infraestrutura (bancos, APIs, UI)**.  
-A comunicação é feita por **Ports (interfaces)** e **Adapters (implementações concretas)**.
-
-### ⚙️ Estrutura típica
-
-core/  
-├── domain/  
-├── ports/  
-│ ├── input/  
-│ └── output/  
-adapters/  
-├── inbound/ (controllers)  
-└── outbound/ (repositories, APIs)  
-
-
-### ✅ Vantagens
-- Domínio puro e independente de frameworks  
-- Código mais testável e flexível  
-
-### ⚠️ Desvantagens
-- Estrutura inicial mais complexa  
-- Curva de aprendizado maior  
-
----
-
-## 🧼 6. Arquitetura Limpa (Clean Architecture)
-
-### 💡 Descrição
-Proposta por **Robert C. Martin (Uncle Bob)**, a **Clean Architecture** organiza o sistema em **camadas concêntricas**,  
-onde as regras de negócio estão no centro e **não dependem de frameworks, banco ou interface externa**.
-
-### ⚙️ Estrutura  
-
-entities/ → Regras de negócio puras  
-usecases/ → Casos de uso  
-adapters/ → Controladores, gateways, presenters  
-frameworks/ → Banco, API, mensageria  
-
-### ✅ **Vantagens**
-- Altamente modular e testável  
-- Total independência de tecnologias externas  
-- Excelente para sistemas corporativos  
-
-### ⚠️ **Desvantagens**
-- Sobrecarga inicial para sistemas pequenos  
-- Exige forte disciplina arquitetural  
-
----
-
-## 🧱 **7. Arquitetura Modular (Modular Monolith)**
+## 🧱 **3. Arquitetura Modular (Modular Monolith)**
 
 ### 💡 **Descrição**
 Uma evolução do monólito tradicional.  
@@ -181,7 +83,59 @@ cliente/
 
 ---
 
-## 🧭 **8. Arquitetura Orientada a Serviços (SOA)**
+## 🧠 4. Arquitetura Hexagonal (Ports and Adapters)
+
+### 💡 Descrição
+Proposta por **Alistair Cockburn**, essa arquitetura separa o **núcleo da aplicação (regras de negócio)** da **infraestrutura (bancos, APIs, UI)**.  
+A comunicação é feita por **Ports (interfaces)** e **Adapters (implementações concretas)**.
+
+### ⚙️ Estrutura típica
+
+core/  
+├── domain/  
+├── ports/  
+│ ├── input/  
+│ └── output/  
+adapters/  
+├── inbound/ (controllers)  
+└── outbound/ (repositories, APIs)  
+
+
+### ✅ Vantagens
+- Domínio puro e independente de frameworks  
+- Código mais testável e flexível  
+
+### ⚠️ Desvantagens
+- Estrutura inicial mais complexa  
+- Curva de aprendizado maior
+
+---
+
+## 🧼 5. Arquitetura Limpa (Clean Architecture)
+
+### 💡 Descrição
+Proposta por **Robert C. Martin (Uncle Bob)**, a **Clean Architecture** organiza o sistema em **camadas concêntricas**,  
+onde as regras de negócio estão no centro e **não dependem de frameworks, banco ou interface externa**.
+
+### ⚙️ Estrutura  
+
+entities/ → Regras de negócio puras  
+usecases/ → Casos de uso  
+adapters/ → Controladores, gateways, presenters  
+frameworks/ → Banco, API, mensageria  
+
+### ✅ **Vantagens**
+- Altamente modular e testável  
+- Total independência de tecnologias externas  
+- Excelente para sistemas corporativos  
+
+### ⚠️ **Desvantagens**
+- Sobrecarga inicial para sistemas pequenos  
+- Exige forte disciplina arquitetural  
+
+---
+
+## 🧭 **6. Arquitetura Orientada a Serviços (SOA)**
 
 ### 💡 **Descrição**
 Divisão do sistema em **serviços corporativos reutilizáveis**, geralmente comunicando-se por um **barramento (ESB)**.  
@@ -194,6 +148,52 @@ Foi o precursor dos microsserviços.
 ### ⚠️ **Desvantagens**
 - Forte acoplamento com o barramento  
 - Escalabilidade limitada  
+
+---
+
+## ☁️ 7. Arquitetura de Microsserviços (Microservices Architecture)
+
+### 💡 Descrição
+A aplicação é dividida em **vários serviços pequenos e independentes**, cada um com uma responsabilidade específica e banco de dados próprio.  
+Os serviços se comunicam via **REST API** ou **mensageria** (RabbitMQ, Kafka).
+
+### ⚙️ Exemplo
+
+pedido-service/  
+pagamento-service/  
+notificacao-service/  
+
+---
+
+### ✅ Vantagens
+- Escalabilidade e deploy independentes  
+- Alta resiliência  
+- Ideal para equipes e domínios separados  
+
+### ⚠️ Desvantagens
+- Complexidade de comunicação e infraestrutura  
+- Necessidade de observabilidade (logs, tracing, monitoramento)
+
+---
+
+## 🔄 8. Arquitetura Orientada a Eventos (Event-Driven Architecture)
+
+### 💡 Descrição
+Os serviços não se comunicam diretamente, mas sim **por meio de eventos assíncronos**.  
+Quando algo acontece em um serviço, ele **publica um evento**, e outros serviços **reagem** a ele.
+
+### ⚙️ Exemplo
+- `PedidoService` publica “PagamentoConfirmado”  
+- `EntregaService` consome o evento e processa a entrega  
+
+### ✅ Vantagens
+- Desacoplamento total entre os serviços  
+- Alta performance e escalabilidade  
+- Comunicação assíncrona  
+
+### ⚠️ Desvantagens
+- Fluxo difícil de rastrear  
+- Complexidade de monitoramento  
 
 ---
 
@@ -257,14 +257,14 @@ flowchart LR
     F --> G[🔄 Event-Driven Architecture]  
     G --> H[🪶 Serverless]  
 
-    A:::basic
-    B:::basic
-    C:::intermediate
-    D:::advanced
-    E:::advanced
-    F:::modern
-    G:::modern
-    H:::cloud
+    A:::basic  
+    B:::basic  
+    C:::intermediate  
+    D:::advanced  
+    E:::advanced  
+    F:::modern  
+    G:::modern  
+    H:::cloud  
 
     classDef basic fill:#e2e8f0,stroke:#64748b,stroke-width:1px,color:#1e293b;
     classDef intermediate fill:#fde68a,stroke:#f59e0b,stroke-width:1px,color:#78350f;
