@@ -247,15 +247,15 @@ Cada função é chamada via **API Gateway** e executa uma tarefa isolada.
 
 ## 🗺️ Evolução das Arquiteturas de Software
 
-```mermaid```
+```mermaid
 flowchart LR
     A[🏗️ Arquitetura Monolítica] --> B[🧱 Arquitetura em Camadas]
-    B --> C[🧩 Arquitetura Modular]
-    C --> D[🔷 Arquitetura Hexagonal]
-    D --> E[🧼 Clean Architecture]
-    E --> F[☁️ Microsserviços]
-    F --> G[🔄 Event-Driven Architecture]
-    G --> H[🪶 Serverless]
+    B --> C[🧩 Arquitetura Modular]  
+    C --> D[🔷 Arquitetura Hexagonal]  
+    D --> E[🧼 Clean Architecture]  
+    E --> F[☁️ Microsserviços]  
+    F --> G[🔄 Event-Driven Architecture]  
+    G --> H[🪶 Serverless]  
 
     A:::basic
     B:::basic
