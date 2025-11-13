@@ -20,9 +20,6 @@ com.algaworks.algafood.api
 com.algaworks.algafood.domain
 com.algaworks.algafood.infrastructure
 
-yaml
-Copiar código
-
 ### ✅ Vantagens
 - Simples de desenvolver e implantar  
 - Baixo custo inicial  
@@ -43,9 +40,6 @@ Divide o sistema em **camadas horizontais** com responsabilidades bem definidas.
 
 ### ⚙️ Exemplo
 controller → service → repository → database
-
-yaml
-Copiar código
 
 ### ✅ Vantagens
 - Organização clara e modular  
@@ -130,9 +124,6 @@ Excelente para sistemas distribuídos e reativos.
 ### ⚙️ Exemplo
 PedidoService → publica "PagamentoConfirmado"
 EntregaService → consome evento e processa entrega
-
-markdown
-Copiar código
 
 ### ✅ Vantagens
 - Desacoplamento entre serviços  
@@ -309,3 +300,59 @@ flowchart LR
     K --> L[🔌 Plugins]
     L --> M[🧩 Microsserviços Modular]
     M --> N[🧮 Component-Based]
+```
+
+## 📊 Tabela Comparativa das Arquiteturas
+
+| **Arquitetura** | **Tipo** | **Escalabilidade** | **Complexidade** | **Ideal para** |
+|------------------|-----------|--------------------|------------------|----------------|
+| 🏗️ **Monolítica** | Local | 🔸 Baixa | 🟢 Baixa | MVPs e sistemas simples |
+| 🧱 **Em Camadas** | Local | 🔸 Média | 🟢 Média | APIs corporativas |
+| 🧩 **Modular Monolith** | Local | 🔸 Média | 🟡 Média | Sistemas médios/grandes |
+| 🧭 **SOA** | Distribuída | 🔸 Média | 🟠 Alta | Integrações corporativas |
+| ☁️ **Microsserviços** | Distribuída | 🔸 Muito Alta | 🔴 Alta | Sistemas escaláveis |
+| 🔄 **Event-Driven** | Distribuída | 🔸 Muito Alta | 🔴 Alta | Sistemas reativos |
+| 🧠 **Hexagonal** | Local | 🔸 Alta | 🟠 Alta | Projetos orientados a domínio |
+| 🧼 **Clean Architecture** | Local | 🔸 Alta | 🔴 Alta | Produtos de longo prazo |
+| 🧅 **Onion** | Local | 🔸 Alta | 🔴 Alta | Sistemas corporativos complexos |
+| 🪶 **Serverless** | Nuvem | 🔸 Alta | 🟡 Média | Automação e APIs simples |
+| ⚙️ **CQRS** | Híbrida | 🔸 Muito Alta | 🔴 Alta | Sistemas de alta performance |
+| 🔌 **Plugins** | Local | 🔸 Média | 🟠 Média | Softwares extensíveis |
+| 🧩 **Microsserviços Modular** | Distribuída | 🔸 Alta | 🟠 Média/Alta | Evolução controlada de sistemas |
+| 🧮 **Component-Based** | Distribuída | 🔸 Alta | 🟠 Média | Aplicações modernas e reusáveis |
+
+---
+
+## 📈 Gráfico Comparativo — Escalabilidade x Complexidade
+
+```mermaid
+xychart-beta
+    title "Escalabilidade x Complexidade das Arquiteturas"
+    x-axis [Baixa, Média, Alta, Muito Alta]
+    y-axis "Complexidade" 0 --> 5
+    bar [1,2,3,4] name="Monolítica"
+    bar [2,2,3,4] name="Em Camadas"
+    bar [3,3,3,4] name="Modular Monolith"
+    bar [2,3,3,4] name="SOA"
+    bar [4,5,5,5] name="Microsserviços"
+    bar [4,5,5,5] name="Event-Driven"
+    bar [3,4,4,4] name="Hexagonal"
+    bar [4,5,5,5] name="Clean Architecture"
+    bar [4,5,5,5] name="Onion"
+    bar [4,3,4,4] name="Serverless"
+    bar [4,5,5,5] name="CQRS"
+    bar [3,3,3,4] name="Plugins"
+    bar [4,4,4,5] name="Microsserviços Modular"
+    bar [4,4,4,4] name="Component-Based"
+```
+
+## 💬 Conclusão
+
+A escolha da **arquitetura de software** deve considerar o **contexto do projeto**, a **maturidade da equipe** e a **escala do sistema**.
+
+- 🧱 **Monólitos e camadas** funcionam bem em sistemas menores.  
+- 🧩 **Clean, Hexagonal e Modular** são ideais para aplicações de médio porte.  
+- ☁️ **Microsserviços, Event-Driven e Serverless** brilham em sistemas distribuídos e escaláveis.  
+
+> 🧠 **“A melhor arquitetura não é a mais complexa — é a que torna o sistema fácil de evoluir.”**
+
