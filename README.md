@@ -332,27 +332,3 @@ A escolha da **arquitetura de software** deve considerar o **contexto do projeto
 
 > 🧠 **“A melhor arquitetura não é a mais complexa — é a que torna o sistema fácil de evoluir.”**
 
----
-
-## 📈 Gráfico Comparativo — Escalabilidade x Complexidade
-
-```mermaid
-xychart-beta
-    title "Escalabilidade x Complexidade das Arquiteturas"
-    x-axis [Baixa, Média, Alta, Muito Alta]
-    y-axis "Complexidade" 0 --> 5
-    bar [1,2,3,4] name="Monolítica"
-    bar [2,2,3,4] name="Em Camadas"
-    bar [3,3,3,4] name="Modular Monolith"
-    bar [2,3,3,4] name="SOA"
-    bar [4,5,5,5] name="Microsserviços"
-    bar [4,5,5,5] name="Event-Driven"
-    bar [3,4,4,4] name="Hexagonal"
-    bar [4,5,5,5] name="Clean Architecture"
-    bar [4,5,5,5] name="Onion"
-    bar [4,3,4,4] name="Serverless"
-    bar [4,5,5,5] name="CQRS"
-    bar [3,3,3,4] name="Plugins"
-    bar [4,4,4,5] name="Microsserviços Modular"
-    bar [4,4,4,4] name="Component-Based"
-
