@@ -1,9 +1,9 @@
-# 🧩 Arquiteturas de Software
+# 🧱 Arquiteturas de Software — Linha Evolutiva
 
-A **arquitetura de software** define **como os componentes de um sistema se organizam, interagem e evoluem** ao longo do tempo.  
-Ela serve como um guia estrutural que equilibra **performance, manutenibilidade, escalabilidade e flexibilidade**.
+A **arquitetura de software** define como os componentes de um sistema se organizam, interagem e evoluem.  
+Cada estilo arquitetural resolve **problemas específicos** de complexidade, escalabilidade, manutenção e desempenho.  
 
-Existem diversos estilos arquiteturais, e a escolha do modelo certo depende do **tamanho do projeto**, **requisitos de negócio** e **maturidade da equipe**.
+Abaixo estão os principais modelos, em ordem **histórica e evolutiva** — do **monólito** até as **arquiteturas modernas em nuvem**.  
 
 ---
 
@@ -11,14 +11,17 @@ Existem diversos estilos arquiteturais, e a escolha do modelo certo depende do *
 
 ### 💡 Descrição
 É o modelo mais tradicional, onde **toda a aplicação é construída e implantada como um único bloco**.  
-Todas as camadas (apresentação, lógica de negócio e persistência) estão no mesmo código e deploy.
+Todas as camadas (apresentação, lógica de negócio e persistência) estão dentro do mesmo código e deploy.
 
 ### ⚙️ Exemplo
 Uma aplicação Spring Boot única (`algafood-api.jar`) com pacotes:
 
-com.algaworks.algafood.api  
-com.algaworks.algafood.domain  
-com.algaworks.algafood.infrastructure  
+com.algaworks.algafood.api
+com.algaworks.algafood.domain
+com.algaworks.algafood.infrastructure
+
+yaml
+Copiar código
 
 ### ✅ Vantagens
 - Simples de desenvolver e implantar  
@@ -35,58 +38,119 @@ com.algaworks.algafood.infrastructure
 ## 🧱 2. Arquitetura em Camadas (Layered Architecture)
 
 ### 💡 Descrição
-Divide o sistema em **camadas horizontais**, onde cada uma possui uma responsabilidade específica.  
-É uma das arquiteturas mais utilizadas em sistemas corporativos Java.
+Divide o sistema em **camadas horizontais** com responsabilidades bem definidas.  
+É o padrão mais comum em aplicações corporativas Java (Controller, Service, Repository).
 
-### 🧩 Camadas típicas
-- **Controller:** entrada das requisições HTTP  
-- **Service:** regras de negócio  
-- **Repository:** acesso a dados  
-- **Model:** entidades e domínio
+### ⚙️ Exemplo
+controller → service → repository → database
+
+yaml
+Copiar código
 
 ### ✅ Vantagens
-- Estrutura organizada e intuitiva  
+- Organização clara e modular  
 - Separação de responsabilidades  
 - Base para arquiteturas mais avançadas  
 
 ### ⚠️ Desvantagens
-- Dependências entre camadas podem gerar acoplamento  
 - Escalabilidade limitada  
+- Pode gerar acoplamento entre camadas  
 
 ---
 
-## 🧱 **3. Arquitetura Modular (Modular Monolith)**
+## 🧩 3. Arquitetura Modular (Modular Monolith)
 
-### 💡 **Descrição**
+### 💡 Descrição
 Uma evolução do monólito tradicional.  
-O sistema é único, mas o código é **dividido em módulos independentes**, cada um representando um **domínio de negócio**.
+O sistema continua único, mas dividido em **módulos independentes** por domínio de negócio.
 
-### ⚙️ **Exemplo**  
-
+### ⚙️ Exemplo
 core/  
 pedido/  
 pagamento/  
 cliente/  
 
-### ✅ **Vantagens**
+### ✅ Vantagens
 - Simplicidade do monólito com melhor organização  
-- Facilidade para evoluir para microsserviços  
+- Facilita evolução para microsserviços  
 - Build e deploy únicos  
 
-### ⚠️ **Desvantagens**
+### ⚠️ Desvantagens
 - Ainda há dependência entre módulos  
 - Escalabilidade limitada  
 
 ---
 
-## 🧠 4. Arquitetura Hexagonal (Ports and Adapters)
+## 🧭 4. Arquitetura Orientada a Serviços (SOA)
 
 ### 💡 Descrição
-Proposta por **Alistair Cockburn**, essa arquitetura separa o **núcleo da aplicação (regras de negócio)** da **infraestrutura (bancos, APIs, UI)**.  
-A comunicação é feita por **Ports (interfaces)** e **Adapters (implementações concretas)**.
+Divisão do sistema em **serviços corporativos reutilizáveis**, geralmente conectados por um **barramento (ESB)**.  
+Foi o precursor direto dos microsserviços modernos.
+
+### ⚙️ Exemplo
+Serviço de Pagamento ↔ ESB ↔ Serviço de Faturamento
+
+### ✅ Vantagens
+- Reuso entre sistemas  
+- Integração com sistemas legados  
+
+### ⚠️ Desvantagens
+- Forte acoplamento com o barramento  
+- Dificuldade de escalar individualmente  
+
+---
+
+## ☁️ 5. Arquitetura de Microsserviços
+
+### 💡 Descrição
+Divide a aplicação em **serviços pequenos, autônomos e independentes**, cada um com sua responsabilidade e banco de dados.  
+A comunicação ocorre via **REST APIs** ou **mensageria** (Kafka, RabbitMQ).
+
+### ⚙️ Exemplo
+pedido-service/  
+pagamento-service/  
+notificacao-service/  
+
+### ✅ Vantagens
+- Escalabilidade e deploy independentes  
+- Alta resiliência e isolamento de falhas  
+
+### ⚠️ Desvantagens
+- Maior complexidade de infraestrutura  
+- Comunicação e monitoramento exigem ferramentas robustas  
+
+---
+
+## 🔄 6. Arquitetura Orientada a Eventos (Event-Driven Architecture)
+
+### 💡 Descrição
+Os serviços se comunicam de forma **assíncrona**, reagindo a **eventos publicados** em um broker de mensageria.  
+Excelente para sistemas distribuídos e reativos.
+
+### ⚙️ Exemplo
+PedidoService → publica "PagamentoConfirmado"
+EntregaService → consome evento e processa entrega
+
+markdown
+Copiar código
+
+### ✅ Vantagens
+- Desacoplamento entre serviços  
+- Alta performance e escalabilidade  
+
+### ⚠️ Desvantagens
+- Fluxo difícil de rastrear  
+- Maior complexidade de observabilidade  
+
+---
+
+## 🧠 7. Arquitetura Hexagonal (Ports and Adapters)
+
+### 💡 Descrição
+Proposta por **Alistair Cockburn**, separa o **núcleo de negócio (domain)** da **infraestrutura (banco, API, UI)**.  
+A comunicação ocorre por **ports (interfaces)** e **adapters (implementações concretas)**.
 
 ### ⚙️ Estrutura típica
-
 core/  
 ├── domain/  
 ├── ports/  
@@ -96,171 +160,152 @@ adapters/
 ├── inbound/ (controllers)  
 └── outbound/ (repositories, APIs)  
 
+
 ### ✅ Vantagens
-- Domínio puro e independente de frameworks  
+- Domínio independente de frameworks  
 - Código mais testável e flexível  
 
 ### ⚠️ Desvantagens
 - Estrutura inicial mais complexa  
-- Curva de aprendizado maior
+- Curva de aprendizado mais alta  
 
 ---
 
-## 🧼 5. Arquitetura Limpa (Clean Architecture)
+## 🧼 8. Arquitetura Limpa (Clean Architecture)
 
 ### 💡 Descrição
-Proposta por **Robert C. Martin (Uncle Bob)**, a **Clean Architecture** organiza o sistema em **camadas concêntricas**,  
-onde as regras de negócio estão no centro e **não dependem de frameworks, banco ou interface externa**.
+Criada por **Robert C. Martin (Uncle Bob)**.  
+Organiza o sistema em **camadas concêntricas**, onde o domínio está no centro e não depende de frameworks ou banco.
 
-### ⚙️ Estrutura  
+### ⚙️ Estrutura
+entities/ → Regras de negócio
+usecases/ → Casos de uso
+adapters/ → Controladores e gateways
+frameworks/ → Banco, API, mensageria
 
-entities/ → Regras de negócio puras  
-usecases/ → Casos de uso  
-adapters/ → Controladores, gateways, presenters  
-frameworks/ → Banco, API, mensageria  
-
-### ✅ **Vantagens**
+### ✅ Vantagens
 - Altamente modular e testável  
-- Total independência de tecnologias externas  
-- Excelente para sistemas corporativos  
+- Independente de tecnologias externas  
 
-### ⚠️ **Desvantagens**
-- Sobrecarga inicial para sistemas pequenos  
+### ⚠️ Desvantagens
+- Sobrecarga inicial em projetos pequenos  
 - Exige forte disciplina arquitetural  
 
 ---
 
-## 🧭 **6. Arquitetura Orientada a Serviços (SOA)**
-
-### 💡 **Descrição**
-Divisão do sistema em **serviços corporativos reutilizáveis**, geralmente comunicando-se por um **barramento (ESB)**.  
-Foi o precursor dos microsserviços.
-
-### ✅ **Vantagens**
-- Reuso entre sistemas  
-- Integração com sistemas legados  
-
-### ⚠️ **Desvantagens**
-- Forte acoplamento com o barramento  
-- Escalabilidade limitada  
-
----
-
-## ☁️ 7. Arquitetura de Microsserviços (Microservices Architecture)
+## 🧅 9. Arquitetura Onion (Cebola)
 
 ### 💡 Descrição
-A aplicação é dividida em **vários serviços pequenos e independentes**, cada um com uma responsabilidade específica e banco de dados próprio.  
-Os serviços se comunicam via **REST API** ou **mensageria** (RabbitMQ, Kafka).
-
-### ⚙️ Exemplo
-
-pedido-service/  
-pagamento-service/  
-notificacao-service/  
+Semelhante à Clean, reforça a **dependência do domínio como núcleo central**.  
+As camadas externas (infra, UI) dependem das internas, nunca o contrário.
 
 ### ✅ Vantagens
-- Escalabilidade e deploy independentes  
-- Alta resiliência  
-- Ideal para equipes e domínios separados  
+- Independência tecnológica  
+- Alta coesão e testabilidade  
 
 ### ⚠️ Desvantagens
-- Complexidade de comunicação e infraestrutura  
-- Necessidade de observabilidade (logs, tracing, monitoramento)
+- Estrutura complexa para sistemas pequenos  
 
 ---
 
-## 🔄 8. Arquitetura Orientada a Eventos (Event-Driven Architecture)
+## 🪶 10. Arquitetura Serverless
 
 ### 💡 Descrição
-Os serviços não se comunicam diretamente, mas sim **por meio de eventos assíncronos**.  
-Quando algo acontece em um serviço, ele **publica um evento**, e outros serviços **reagem** a ele.
+Aplicações compostas por **funções sob demanda** executadas na nuvem, sem necessidade de gerenciar servidores.
 
 ### ⚙️ Exemplo
-- `PedidoService` publica “PagamentoConfirmado”  
-- `EntregaService` consome o evento e processa a entrega  
+AWS Lambda + API Gateway + DynamoDB
 
 ### ✅ Vantagens
-- Desacoplamento total entre os serviços  
-- Alta performance e escalabilidade  
-- Comunicação assíncrona  
-
-### ⚠️ Desvantagens
-- Fluxo difícil de rastrear  
-- Complexidade de monitoramento  
-
----
-
-## 🪶 **9. Arquitetura Serverless**
-
-### 💡 **Descrição**
-A aplicação é composta por **funções executadas sob demanda** na nuvem, sem a necessidade de gerenciar servidores.  
-Cada função é chamada via **API Gateway** e executa uma tarefa isolada.
-
-### ⚙️ **Exemplo**
-- AWS Lambda + API Gateway + DynamoDB
-
-### ✅ **Vantagens**
 - Escalabilidade automática  
-- Pagamento apenas pelo uso  
-- Sem manutenção de servidores  
+- Pagamento por uso  
+- Menos manutenção de infraestrutura  
 
-### ⚠️ **Desvantagens**
-- Dificuldade para testes locais  
-- Cold start em execuções ocasionais  
-
----
-
-## 🧭 **Resumo Comparativo**
-
-| Arquitetura | Tipo | Escalabilidade | Complexidade | Ideal para |
-|--------------|------|----------------|---------------|-------------|
-| **Monolítica** | Local | 🔸 Baixa | 🟢 Baixa | MVPs e sistemas pequenos |
-| **Em Camadas** | Local | 🔸 Média | 🟢 Média | APIs REST corporativas |
-| **Modular** | Local | 🔸 Média | 🟡 Média | Sistemas médios/grandes |
-| **Hexagonal** | Local | 🔸 Alta | 🟠 Alta | Projetos com domínio forte |
-| **Clean Architecture** | Local | 🔸 Alta | 🔴 Alta | SaaS, fintechs, produtos longos |
-| **SOA** | Distribuída | 🔸 Média | 🟠 Alta | Integrações corporativas |
-| **Microsserviços** | Distribuída | 🔸 Muito Alta | 🔴 Alta | Sistemas escaláveis |
-| **Event-Driven** | Distribuída | 🔸 Muito Alta | 🔴 Alta | Sistemas reativos/distribuídos |
-| **Serverless** | Nuvem | 🔸 Alta | 🟡 Média | Automação e APIs simples |
+### ⚠️ Desvantagens
+- Dificuldade de testes locais  
+- Possível latência (cold start)  
 
 ---
 
-## 💬 **Conclusão**
+## 🧮 11. Arquitetura CQRS (Command Query Responsibility Segregation)
 
-> A **arquitetura de software** define a base estrutural de um sistema.  
-> Não existe uma arquitetura “melhor”, e sim **a mais adequada** para o contexto do projeto.  
-> Projetos pequenos funcionam bem com **arquiteturas em camadas**,  
-> enquanto sistemas corporativos e SaaS modernos tendem a adotar **Clean Architecture**, **Hexagonal** ou **Microsserviços**.
+### 💡 Descrição
+Separa os modelos de **leitura e escrita** em estruturas distintas, melhorando performance e escalabilidade.
+
+### ✅ Vantagens
+- Alta performance de leitura  
+- Facilita event sourcing  
+
+### ⚠️ Desvantagens
+- Complexidade maior no design  
+- Dificuldade de sincronização  
 
 ---
 
-⭐ *“A boa arquitetura não é a mais complexa, mas a que torna o sistema fácil de evoluir.”*
+## 🔌 12. Arquitetura Orientada a Plugins
 
+### 💡 Descrição
+Permite adicionar ou remover funcionalidades sem alterar o núcleo principal da aplicação.
 
-## 🗺️ Evolução das Arquiteturas de Software
+### ⚙️ Exemplo
+core/  
+plugins/  
+├── analytics/  
+├── notificacoes/  
+└── relatorios/  
+
+### ✅ Vantagens
+- Extensível e modular  
+- Ideal para sistemas customizáveis  
+
+### ⚠️ Desvantagens
+- Gerenciamento de dependências mais complexo  
+
+---
+
+## 🧩 13. Arquitetura de Microsserviços Modular
+
+### 💡 Descrição
+Combina modularização interna com microsserviços.  
+Cada módulo pode evoluir até se tornar um serviço independente.
+
+### ✅ Vantagens
+- Evolução gradual e organizada  
+- Boa governança entre domínios  
+
+### ⚠️ Desvantagens
+- Requer padronização entre módulos  
+
+---
+
+## 🧮 14. Arquitetura Baseada em Componentes (Component-Based)
+
+### 💡 Descrição
+Foca na criação de **componentes reutilizáveis e independentes**, ideais para aplicações distribuídas e modernas.
+
+### ✅ Vantagens
+- Reuso e flexibilidade  
+- Facilita manutenção modular  
+
+### ⚠️ Desvantagens
+- Maior esforço de orquestração  
+
+---
+
+## 🧭 Linha Evolutiva das Arquiteturas
 
 ```mermaid
 flowchart LR
-    A[🏗️ Arquitetura Monolítica] --> B[🧱 Arquitetura em Camadas]
-    B --> C[🧩 Arquitetura Modular]  
-    C --> D[🔷 Arquitetura Hexagonal]  
-    D --> E[🧼 Clean Architecture]  
-    E --> F[☁️ Microsserviços]  
-    F --> G[🔄 Event-Driven Architecture]  
-    G --> H[🪶 Serverless]  
-
-    A:::basic  
-    B:::basic  
-    C:::intermediate  
-    D:::advanced  
-    E:::advanced  
-    F:::modern  
-    G:::modern  
-    H:::cloud  
-
-    classDef basic fill:#e2e8f0,stroke:#64748b,stroke-width:1px,color:#1e293b;
-    classDef intermediate fill:#fde68a,stroke:#f59e0b,stroke-width:1px,color:#78350f;
-    classDef advanced fill:#bbf7d0,stroke:#16a34a,stroke-width:1px,color:#064e3b;
-    classDef modern fill:#93c5fd,stroke:#2563eb,stroke-width:1px,color:#1e3a8a;
-    classDef cloud fill:#c7d2fe,stroke:#4f46e5,stroke-width:1px,color:#312e81;
+    A[🏗️ Monolítica] --> B[🧱 Em Camadas]
+    B --> C[🧩 Modular Monolith]
+    C --> D[🧭 SOA]
+    D --> E[☁️ Microsserviços]
+    E --> F[🔄 Event-Driven]
+    F --> G[🧠 Hexagonal]
+    G --> H[🧼 Clean Architecture]
+    H --> I[🧅 Onion]
+    I --> J[🪶 Serverless]
+    J --> K[🧮 CQRS]
+    K --> L[🔌 Plugins]
+    L --> M[🧩 Microsserviços Modular]
+    M --> N[🧮 Component-Based]
