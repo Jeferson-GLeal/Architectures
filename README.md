@@ -322,6 +322,17 @@ flowchart LR
 | 🧮 **Component-Based** | Distribuída | 🔸 Alta | 🟠 Média | Aplicações modernas e reusáveis |
 
 ---
+## 💬 Conclusão
+
+A escolha da **arquitetura de software** deve considerar o **contexto do projeto**, a **maturidade da equipe** e a **escala do sistema**.
+
+- 🧱 **Monólitos e camadas** funcionam bem em sistemas menores.  
+- 🧩 **Clean, Hexagonal e Modular** são ideais para aplicações de médio porte.  
+- ☁️ **Microsserviços, Event-Driven e Serverless** brilham em sistemas distribuídos e escaláveis.  
+
+> 🧠 **“A melhor arquitetura não é a mais complexa — é a que torna o sistema fácil de evoluir.”**
+
+---
 
 ## 📈 Gráfico Comparativo — Escalabilidade x Complexidade
 
@@ -344,15 +355,4 @@ xychart-beta
     bar [3,3,3,4] name="Plugins"
     bar [4,4,4,5] name="Microsserviços Modular"
     bar [4,4,4,4] name="Component-Based"
-```
-
-## 💬 Conclusão
-
-A escolha da **arquitetura de software** deve considerar o **contexto do projeto**, a **maturidade da equipe** e a **escala do sistema**.
-
-- 🧱 **Monólitos e camadas** funcionam bem em sistemas menores.  
-- 🧩 **Clean, Hexagonal e Modular** são ideais para aplicações de médio porte.  
-- ☁️ **Microsserviços, Event-Driven e Serverless** brilham em sistemas distribuídos e escaláveis.  
-
-> 🧠 **“A melhor arquitetura não é a mais complexa — é a que torna o sistema fácil de evoluir.”**
 
